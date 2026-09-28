@@ -72,3 +72,14 @@ Conviene fijar la versión (`python:3.12-slim`) en lugar de emplear `python:late
 1. **Reproducibilidad y determinismo:** La etiqueta `latest` es mutable y cambia dinámicamente con el tiempo. Si se construye la imagen semanas o meses después, `latest` podría apuntar a una versión mayor posterior con cambios incompatibles (*breaking changes*) o bibliotecas deprecadas.
 2. **Estabilidad del entorno:** Al fijar `3.12-slim`, se garantiza que todos los miembros del equipo, los entornos de prueba y los contenedores de producción ejecuten exactamente el mismo intérprete y dependencias de sistema.
 3. **Eficiencia de recursos (`-slim`):** Las variantes `slim` contienen únicamente los paquetes indispensables para ejecutar Python sobre una base Debian mínima, reduciendo drásticamente la superficie de ataque y el peso de la imagen en comparación con las imágenes completas por defecto.
+
+---
+
+## Verificación de Entornos Multi-versión (Parte C)
+
+De conformidad con la nota técnica de la práctica relativa a equipos sin virtualización por contenedor activa, se configuraron y validaron tres intérpretes nativos de Python en Windows mediante el lanzador estándar `py`:
+- **Python 3.11:** `py -3.11`
+- **Python 3.12:** `py -3.12` (intérprete base del proyecto)
+- **Python 3.13:** `py -3.13`
+
+Asimismo, se dejaron versionados los archivos de orquestación requeridos (`entorno/Dockerfile`, `entorno/compose.yml` y `requirements.txt`) para asegurar la portabilidad del entorno.
